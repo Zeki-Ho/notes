@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>操作笔记</title>
+</head>
+<style type="text/css">
+	article{margin:auto;}
+	article p{text-indent: 2em;}
+</style>
+<body>
+	<h1>大数据技术与应用</h1>
+	<article>
+		<h3 id="p1">Linux操作系统</h3>
+		<p><a href="https://baike.baidu.com/item/Linux/27050">介绍</a><br>Linux，全称GNU/Linux，是一种免费使用和自由传播的类UNIX操作系统，其内核由林纳斯·本纳第克特·托瓦兹（Linus Benedict Torvalds）于1991年10月5日首次发布，它主要受到Minix和Unix思想的启发，是一个基于POSIX的多用户、多任务、支持多线程和多CPU的操作系统。它支持32位和64位硬件，能运行主要的Unix工具软件、应用程序和网络协议。
+            Linux继承了Unix以网络为核心的设计思想，是一个性能稳定的多用户网络操作系统。Linux有上百种不同的发行版，如基于社区开发的debian、archlinux，和基于商业开发的Red Hat Enterprise Linux、SUSE、Oracle Linux等。</p>
+		<p><a href="https://blog.csdn.net/m0_46422300/article/details/104645072">Linux系统的文件结构</a><br><font color="#FF0000">
+            /bin        二进制文件，系统常规命令<br>
+            /boot       系统启动分区，系统启动时读取的文件<br>
+            /dev        设备文件<br>
+            /etc        大多数配置文件<br>
+            /home       普通用户的家目录<br>
+            /lib        32位函数库<br>
+            /lib64      64位库<br>
+            /media      手动临时挂载点<br>
+            /mnt        手动临时挂载点<br>
+            /opt        第三方软件安装位置<br>
+            /proc       进程信息及硬件信息<br>
+            /root       临时设备的默认挂载点<br>
+            /sbin       系统管理命令<br>
+            /srv        数据<br>
+            /var        数据<br>
+            /sys        内核相关信息<br>
+            /tmp        临时文件<br>
+            /usr        用户相关设定</font></p>
+		<p>Linux系统命令行的含义<br><font color="#FF0000">
+            示例：root@app00:~# <br>
+            root    //用户名，root为超级用户<br>
+            @       //分隔符<br>
+            app00   //主机名称<br>
+            ~       //当前所在目录，默认用户目录为~，会随着目录切换而变化，例如：（root@app00:/bin# ，当前位置在bin目录下）<br>
+            #       //表示当前用户是超级用户，普通用户为$，例如：（"yao@app00:/root$" ，表示使用用户"yao"访问/root文件夹）</font></p>
+		<p>命令的组成<br><font color="#FF0000">示例：命令 参数名 参数值</font></p>
+		<p>重启系统<br><font color="#FF0000">
+            (1)立刻关机：shutdown -h now 或者 poweroff<br>
+            (2)两分钟后关机：shutdown -h 2</font></p>
+		<p>关闭系统<br><font color="#FF0000">
+            (1)立刻重启：shutdown -r now 或者 reboot<br>
+            (2)两分钟后重启：shutdown -r 2 </font></p>
+		<p>帮助命令（help）<br><font color="#FF0000">ifconfig  --help     //查看 ifconfig 命令的用法</font></p>
+        <p>命令说明书（man）<br><font color="#FF0000">man shutdown         //打开命令说明后，可按"q"键退出</font></p>
+        <p>切换用户（su）<br><font color="#FF0000">
+            su yao               //切换为用户"yao",输入后回车需要输入该用户的密码<br>
+            exit                 //退出当前用户</font></p>
+        <p>切换目录（cd）<br><font color="#FF0000">
+            cd /                 //切换到根目录<br>
+            cd /bin              //切换到根目录下的bin目录<br>
+            cd ../               //切换到上一级目录 或者使用命令：cd ..<br>
+            cd ~                 //切换到home目录<br>
+            cd -                 //切换到上次访问的目录<br>
+            cd xx(文件夹名)       //切换到本目录下的名为xx的文件目录，如果目录不存在报错<br>
+            cd /xxx/xx/x         //可以输入完整的路径，直接切换到目标目录，输入过程中可以使用tab键快速补全</font></p>
+        <p>查看目录（ls）<br><font color="#FF0000">
+            ls                   //查看当前目录下的所有目录和文件<br>
+            ls -a                //查看当前目录下的所有目录和文件（包括隐藏的文件）<br>
+            ls -l                //列表查看当前目录下的所有目录和文件（列表查看，显示更多信息），与命令"ll"效果一样<br>
+            ls /bin              //查看指定目录下的所有目录和文件 </font></p>
+        <p>创建目录（mkdir）<br><font color="#FF0000">
+            mkdir tools          //在当前目录下创建一个名为tools的目录<br>
+            mkdir /bin/tools     //在指定目录下创建一个名为tools的目录</font></p>
+        <p>删除目录与文件（rm）<br><font color="#FF0000">
+            rm 文件名              //删除当前目录下的文件<br>
+            rm -f 文件名           //删除当前目录的的文件（不询问）<br>
+            rm -r 文件夹名         //递归删除当前目录下此名的目录<br>
+            rm -rf 文件夹名        //递归删除当前目录下此名的目录（不询问）<br>
+            rm -rf *              //将当前目录下的所有目录和文件全部删除<br>
+            rm -rf /*             //将根目录下的所有文件全部删除【慎用！相当于格式化系统】</font></p>
+        <p>修改目录（mv）<br><font color="#FF0000">
+            mv 当前目录名 新目录名        //修改目录名，同样适用与文件操作<br>
+            mv /usr/tmp/tool /opt       //将/usr/tmp目录下的tool目录剪切到 /opt目录下面<br>
+            mv -r /usr/tmp/tool /opt    //递归剪切目录中所有文件和文件夹</font></p>
+        <p>拷贝目录（cp）<br><font color="#FF0000">
+            cp /usr/tmp/tool /opt       //将/usr/tmp目录下的tool目录复制到 /opt目录下面<br>
+            cp -r /usr/tmp/tool /opt    //递归剪复制目录中所有文件和文件夹</font></p>
+        <p>搜索目录（find）<br><font color="#FF0000">find /bin -name 'a*'        //查找/bin目录下的所有以a开头的文件或者目录</font></p>
+        <p>查看当前目录（pwd）<br><font color="#FF0000">pwd                         //显示当前位置路径</font></p>
+        <p>新增文件（touch）<br><font color="#FF0000">touch  a.txt         //在当前目录下创建名为a的txt文件（文件不存在），如果文件存在，将文件时间属性修改为当前系统时间</font></p>
+        <p>删除文件（rm）<br><font color="#FF0000">
+            rm 文件名              //删除当前目录下的文件<br>
+            rm -f 文件名           //删除当前目录的的文件（不询问）</font></p>
+        <p>编辑文件（vi、vim）<br><font color="#FF0000">
+            vi 文件名              //打开需要编辑的文件<br>
+            --进入后，操作界面有三种模式：命令模式（command mode）、插入模式（Insert mode）和底行模式（last line mode）<br>
+            <font color="#0000FF">命令模式</font><br>
+            -刚进入文件就是命令模式，通过方向键控制光标位置，<br>
+            -使用命令"dd"删除当前整行<br>
+            -使用命令"/字段"进行查找<br>
+            -按"i"在光标所在字符前开始插入<br>
+            -按"a"在光标所在字符后开始插入<br>
+            -按"o"在光标所在行的下面另起一新行插入<br>
+            -按"："进入底行模式<br>
+            <font color="#0000FF">插入模式</font><br>
+            -此时可以对文件内容进行编辑，左下角会显示 "-- 插入 --""<br>
+            -按"ESC"进入底行模式<br>
+            <font color="#0000FF">底行模式</font><br>
+            -退出编辑：      :q<br>
+            -强制退出：      :q!<br>
+            -保存并退出：    :wq<br>
+            <font color="#0000FF">## 操作步骤示例 ##</font><br>
+            1.保存文件：按"ESC" -> 输入":" -> 输入"wq",回车     //保存并退出编辑<br>
+            2.取消操作：按"ESC" -> 输入":" -> 输入"q!",回车     //撤销本次修改并退出编辑<br>
+            ## 补充 ##<br>
+            vim +10 filename.txt                   //打开文件并跳到第10行<br>
+            vim -R /etc/passwd                     //以只读模式打开文件</font></p>
+        <p>查看文件<br><font color="#FF0000">
+            cat a.txt          //查看文件最后一屏内容<br>
+            less a.txt         //PgUp向上翻页，PgDn向下翻页，"q"退出查看<br>
+            more a.txt         //显示百分比，回车查看下一行，空格查看下一页，"q"退出查看<br>
+            tail -100 a.txt    //查看文件的后100行，"Ctrl+C"退出查看</font></p>
+        <p>权限说明<br><font color="#FF0000">
+            文件权限简介：'r' 代表可读（4），'w' 代表可写（2），'x' 代表执行权限（1），括号内代表"8421法"<br>
+            ##文件权限信息示例：-rwxrw-r--<br>
+            -第一位：'-'就代表是文件，'d'代表是文件夹<br>
+            -第一组三位：拥有者的权限<br>
+            -第二组三位：拥有者所在的组，组员的权限<br>
+            -第三组三位：代表的是其他用户的权限</font></p>
+        <p>文件权限<br><font color="#FF0000">
+            普通授权    chmod +x a.txt<br>
+            8421法     chmod 777 a.txt     //1+2+4=7，"7"说明授予所有权限</font></p>
+        <p>打包与解压说明<br><font color="#FF0000">
+            .zip、.rar        //windows系统中压缩文件的扩展名<br>
+            .tar              //Linux中打包文件的扩展名<br>
+            .gz               //Linux中压缩文件的扩展名<br>
+            .tar.gz           //Linux中打包并压缩文件的扩展名</font></p>
+        <p>打包文件<br><font color="#FF0000">
+            tar -zcvf 打包压缩后的文件名 要打包的文件<br>
+            参数说明：z：调用gzip压缩命令进行压缩; c：打包文件; v：显示运行过程; f：指定文件名;<br>
+            示例：tar -zcvf a.tar file1 file2,...      //多个文件压缩打包</font></p>
+        <p>解压文件<br><font color="#FF0000">
+            tar -zxvf a.tar                      //解包至当前目录<br>
+            tar -zxvf a.tar -C /usr------        //指定解压的位置<br>
+            unzip test.zip             //解压*.zip文件 <br>
+            unzip -l test.zip          //查看*.zip文件的内容</font></p>
+        <p>find<br><font color="#FF0000">
+            find . -name "*.c"     //将目前目录及其子目录下所有延伸档名是 c 的文件列出来<br>
+            find . -type f         //将目前目录其其下子目录中所有一般文件列出<br>
+            find . -ctime -20      //将目前目录及其子目录下所有最近 20 天内更新过的文件列出<br>
+            find /var/log -type f -mtime +7 -ok rm {} \;     //查找/var/log目录中更改时间在7日以前的普通文件，并在删除之前询问它们<br>
+            find . -type f -perm 644 -exec ls -l {} \;       //查找前目录中文件属主具有读、写权限，并且文件所属组的用户和其他用户具有读权限的文件<br>
+            find / -type f -size 0 -exec ls -l {} \;         //为了查找系统中所有文件长度为0的普通文件，并列出它们的完整路径</font></p>
+        <p>whereis<br><font color="#FF0000">whereis ls             //将和ls文件相关的文件都查找出来</font></p>
+        <p>which<br><font color="#FF0000">
+            说明：which指令会在环境变量$PATH设置的目录里查找符合条件的文件。<br>
+            which bash             //查看指令"bash"的绝对路径</font></p>
+        <p>sudo<br><font color="#FF0000">
+            说明：sudo命令以系统管理者的身份执行指令，也就是说，经由 sudo 所执行的指令就好像是 root 亲自执行。需要输入自己账户密码。<br>
+            使用权限：在 /etc/sudoers 中有出现的使用者<br>
+            sudo -l                              //列出目前的权限<br>
+            $ sudo -u yao vi ~www/index.html    //以 yao 用户身份编辑  home 目录下www目录中的 index.html 文件</font></p>
+        <p>grep<br><font color="#FF0000">
+            grep -i "the" demo_file              //在文件中查找字符串(不区分大小写)<br>
+            grep -A 3 -i "example" demo_text     //输出成功匹配的行，以及该行之后的三行<br>
+            grep -r "ramesh" *                   //在一个文件夹中递归查询包含指定字符串的文件</font></p>
+        <p>service<br><font color="#FF0000">
+            说明：service命令用于运行System V init脚本，这些脚本一般位于/etc/init.d文件下，这个命令可以直接运行这个文件夹里面的脚本，而不用加上路径<br>
+            service ssh status      //查看服务状态 <br>
+            service --status-all    //查看所有服务状态 <br>
+            service ssh restart     //重启服务 </font></p>
+        <p>free<br><font color="#FF0000">
+            说明：这个命令用于显示系统当前内存的使用情况，包括已用内存、可用内存和交换内存的情况<br>
+            free -g            //以G为单位输出内存的使用量，-g为GB，-m为MB，-k为KB，-b为字节<br>
+            free -t            //查看所有内存的汇总</font></p>
+        <p>top<br><font color="#FF0000">
+            说明：显示文件系统的磁盘使用情况<br>
+            df -h            //一种易看的显示</font></p>
+        <p>mount<br><font color="#FF0000">
+            mount /dev/sdb1 /u01              //挂载一个文件系统，需要先创建一个目录，然后将这个文件系统挂载到这个目录上<br>
+            dev/sdb1 /u01 ext2 defaults 0 2   //添加到fstab中进行自动挂载，这样任何时候系统重启的时候，文件系统都会被加载</font></p>
+        <p>uname<br><font color="#FF0000">
+            说明：uname可以显示一些重要的系统信息，例如内核名称、主机名、内核版本号、处理器类型之类的信息<br>
+            uname -a</font></p>
+        <p>yum<br><font color="#FF0000">
+            说明：安装插件命令<br>
+            yum install httpd      //使用yum安装apache<br>
+            yum update httpd       //更新apache<br>
+            yum remove httpd       //卸载/删除apache</font></p>
+        <p>rpm<br><font color="#FF0000">
+            说明：插件安装命令<br>
+            rpm -ivh httpd-2.2.3-22.0.1.el5.i386.rpm      //使用rpm文件安装apache<br>
+            rpm -uvh httpd-2.2.3-22.0.1.el5.i386.rpm      //使用rpm更新apache<br>
+            rpm -ev httpd                                 //卸载/删除apache</font></p>
+        <p>date<br><font color="#FF0000">date -s "01/31/2010 23:59:53"   ///设置系统时间</font></p>
+        <p>wget<br><font color="#FF0000">
+            说明：使用wget从网上下载软件、音乐、视频<br>
+            示例：wget http://prdownloads.sourceforge.net/sourceforge/nagios/nagios-3.2.1.tar.gz<br>
+            //下载文件并以指定的文件名保存文件<br>
+            wget -O nagios.tar.gz http://prdownloads.sourceforge.net/sourceforge/nagios/nagios-3.2.1.tar.gz</font></p>
+        <p>ftp<br><font color="#FF0000">
+            ftp IP/hostname    //访问ftp服务器<br>
+            mls *.html -       //显示远程主机上文件列表</font></p>
+        <p>scp<br><font color="#FF0000">scp /opt/data.txt  192.168.1.101:/opt/    //将本地opt目录下的data文件发送到192.168.1.101服务器的opt目录下</font></p>
+        <p>防火墙操作<br><font color="#FF0000">
+            service iptables status      //查看iptables服务的状态<br>
+            service iptables start       //开启iptables服务<br>
+            service iptables stop        //停止iptables服务<br>
+            service iptables restart     //重启iptables服务<br>
+            chkconfig iptables off       //关闭iptables服务的开机自启动<br>
+            chkconfig iptables on        //开启iptables服务的开机自启动<br>
+            ##centos7 防火墙操作<br>
+            systemctl status firewalld.service     //查看防火墙状态<br>
+            systemctl stop firewalld.service       //关闭运行的防火墙<br>
+            systemctl disable firewalld.service    //永久禁止防火墙服务</font></p>
+        <p>修改主机名（CentOS 7）<br><font color="#FF0000">hostnamectl set-hostname 主机名</font></p>
+        <p>查看网络<br><font color="#FF0000">ifconfig\ip addr</font></p>
+        <p>修改IP<br><font color="#FF0000">
+            修改网络配置文件，文件地址：/etc/sysconfig/network-scripts/ifcfg-eth0<br>
+            ------------------------------------------------<br>
+            主要修改以下配置：<br>
+            TYPE=Ethernet               //网络类型<br>
+            BOOTPROTO=static            //静态IP<br>
+            DEVICE=ens00                //网卡名<br>
+            IPADDR=192.168.168.100        //设置的IP<br>
+            NETMASK=255.255.255.0       //子网掩码<br>
+            GATEWAY=192.168.168.2         //网关<br>
+            DNS1=114.114.114.114            //DNS<br>
+            DNS2=8.8.8.8                //备用DNS<br>
+            ONBOOT=yes                  //系统启动时启动此设置<br>
+            -------------------------------------------------<br>
+            修改保存以后使用命令重启网卡：service network restart</font></p>
+        <p>配置映射<br><font color="#FF0000">
+            修改文件： vi /etc/hosts<br>
+            在文件最后添加映射地址，示例如下：<br>
+             192.168.1.101  node1<br>
+             192.168.1.102  node2<br>
+             192.168.1.103  node3<br>
+            配置好以后保存退出，输入命令：ping node1 ，可见实际 ping 的是 192.168.1.101。</font></p>
+        <p>查看进程<br><font color="#FF0000">ps -ef         //查看所有正在运行的进程</font></p>
+        <p>结束进程<br><font color="#FF0000">
+            kill pid       //杀死该pid的进程<br>
+            kill -9 pid    //强制杀死该进程</font></p>
+        <p>查看链接<br><font color="#FF0000">
+            ping IP        //查看与此IP地址的连接情况<br>
+            netstat -an    //查看当前系统端口<br>
+            netstat -an | grep 8080     //查看指定端口</font></p>
+        <p>快速清屏<br><font color="#FF0000">ctrl+l        //清屏，往上翻可以查看历史操作</font></p>
+        <p>远程主机<br><font color="#FF0000">ssh IP       //远程主机，需要输入用户名和密码</font></p>
+
+       
+		<h3 id="p2">Hadoop平台搭建</h3>
+		<p>暂无</p>
+
+		<h3 id="p3">大数据运维</h3>
+		<p>暂无</p>
+		
+        <h3 id="p4">NoSQL</h3>
+		<p>暂无</p>
+
+		<h3 id="p5">HTML</h3>
+		<p>暂无</p>
+
+		<h3 id="p6">JAVA</h3>
+		<p>暂无</p>
+
+		<h3 id="p7">PYTHON</h3>
+		<p>暂无</p>
+		
+        <h3 id="p8">关于</h3>
+		<p>FROM ZEKI-HO 个人学习使用</p>
+
+        <h3 id="p9">更多</h3>
+		<p><a href="https://www.w3cschool.cn/tutorial">W3cschool</a></p>
+		<p><a href="https://docs.oracle.com/javase/8/docs/api/index.html">JAVA</a></p>
+		<p><a href="https://qwerty.kaiyi.cool/">QWERTY</a></p>
+		
+	</article>
+</body>
+</html>
