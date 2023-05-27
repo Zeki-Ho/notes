@@ -26,6 +26,9 @@
     }
   </style>
   <script>
+    var textHistory = []; // 用于保存文本修改历史记录
+    var currentPosition = -1; // 当前历史记录的位置
+
     function copyText() {
       var text = document.getElementById("editor").value;
       // 将文本复制到剪切板
@@ -57,6 +60,38 @@
       document.getElementById("editor").value = "";
       console.log("文本已清空！");
     }
+
+    function updateTextHistory() {
+      var editor = document.getElementById("editor");
+      var currentText = editor.value;
+      // 删除当前位置之后的历史记录
+      textHistory.splice(currentPosition + 1);
+      // 将当前文本添加到历史记录
+      textHistory.push(currentText);
+      currentPosition++;
+    }
+
+    function undoText() {
+      if (currentPosition > 0) {
+        currentPosition--;
+        var editor = document.getElementById("editor");
+        editor.value = textHistory[currentPosition];
+        console.log("撤销操作成功！");
+      } else {
+        console.log("无法再撤销操作！");
+      }
+    }
+
+    function redoText() {
+      if (currentPosition < textHistory.length - 1) {
+        currentPosition++;
+        var editor = document.getElementById("editor");
+        editor.value = textHistory[currentPosition];
+        console.log("恢复操作成功！");
+      } else {
+        console.log("无法再恢复操作！");
+      }
+    }
   </script>
 </head>
 <body>
@@ -67,9 +102,11 @@
     <button onclick="copyText()">复制</button>
     <button onclick="pasteText()">粘贴</button>
     <button onclick="clearText()">清空</button>
+    <button onclick="undoText()">撤销</button>
+    <button onclick="redoText()">恢复</button>
   </div>
   
   <!-- 文本编辑器 -->
-  <textarea id="editor" rows="10" cols="50" placeholder="在这里输入或编辑文本"></textarea>
+  <textarea id="editor" rows="10" cols="50" placeholder="在这里输入或编辑文本" oninput="updateTextHistory()"></textarea>
 </body>
 </html>
