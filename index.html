@@ -30,12 +30,12 @@
       var text = document.getElementById("editor").value;
       // 将文本复制到剪切板
       navigator.clipboard.writeText(text)
-        .then(function() {
-          console.log("文本已成功复制到剪切板！");
-        })
-        .catch(function(error) {
-          console.error("复制文本时出现错误：", error);
-        });
+        // .then(function() {
+        //   console.log("文本已成功复制到剪切板！");
+        // })
+        // .catch(function(error) {
+        //   console.error("复制文本时出现错误：", error);
+        // });
     }
 
     function pasteText() {
@@ -45,18 +45,34 @@
           var editor = document.getElementById("editor");
           editor.value += text;
           editor.focus();
-          console.log("文本已成功粘贴！");
+          // console.log("文本已成功粘贴！");
         })
         .catch(function(error) {
-          console.error("粘贴文本时出现错误：", error);
+          // console.error("粘贴文本时出现错误：", error);
         });
     }
 
     function clearText() {
       // 清空编辑器的内容
       document.getElementById("editor").value = "";
-      console.log("文本已清空！");
+      // console.log("文本已清空！");
     }
+    
+    function saveText() {
+      // 获取文本框元素  
+      var textbox = document.getElementById("editor");
+      // 获取文本框中的文本  
+      var text = textbox.value;
+      // 创建 blob 对象，将文本转换为二进制数据
+      var blob = new Blob([text], {type: "text/plain;charset=utf-8"});
+      // 创建 URL 对象，用于下载文件
+      var url = URL.createObjectURL(blob);
+      // 创建 a 元素，用于触发下载操作
+      var a = document.createElement("a");
+      a.href = url;
+      a.download = "ZEKI.txt"; // 文件名
+      a.click(); // 触发下载操作
+    } 
   </script>
 </head>
 <body>
@@ -67,6 +83,7 @@
     <button onclick="copyText()">复制</button>
     <button onclick="pasteText()">粘贴</button>
     <button onclick="clearText()">清空</button>
+    <button onclick="saveText()">另存为</button>
   </div>
 
   <!-- 文本编辑器 -->
